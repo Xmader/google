@@ -1,0 +1,19 @@
+{
+  "name": "gmirror",
+  "version": "0.1.0",
+  "description": "a google mirror server.",
+  "main": "app.js",
+  "dependencies": {
+    "express": "4.*",,
+    "serve-favicon": "*"
+    "request": "*",
+    "ejs": "*"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "google",
+    "mirror"
+  ],
+  "author": "iSayme",
+  "license": "MIT"
+}

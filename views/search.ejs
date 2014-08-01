@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=8" />
+  
+  <title>Google</title>
+  
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="search">
+    <a href="/"><div id="logo"></div></a>
+    <input type="text" id="s-input">
+    <div id="s-btn"><span></span></div>
+  </div>
+  
+  <div id="content">
+    <div id="result-info">About <%- cursor.estimatedResultCount %> results (<%- cursor.searchResultTime %> seconds) </div>
+
+    <% for (var i = 0, l = results.length; i < l; i++) { %>
+      <div class="content-item">
+        <h3><a href="<%- results[i].unescapedUrl %>"><%- results[i].title %></a></h3>
+        <div class="content-item-link"><%- results[i].formattedUrl %></div>
+        <div class="content-item-desc">
+          <%- results[i].content %>
+        </div>
+      </div>
+    <% } %>
+    
+    <div id="nav">
+      <ul>
+        <li class="nav-prev">
+          <a href="">
+            <div class="nav-item-img"></div>
+            <div>上一页</div>
+          </a>
+        </li>
+        <% for (var i = 0, l = cursor.pages.length; i < l; i++) { %>
+          <li>
+            <a href="<%- cursor.pages[i].label %>">
+              <div class="nav-item-img"></div>
+              <div><%- cursor.pages[i].label %></div>
+            </a>
+          </li>
+        <% } %>
+        <li class="nav-next">
+          <a href="">
+            <div class="nav-item-img"></div>
+            <div>上一页</div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+</body>
+</html>
