@@ -4,8 +4,8 @@
   "description": "a google mirror server.",
   "main": "app.js",
   "dependencies": {
-    "express": "4.*",,
-    "serve-favicon": "*"
+    "express": "4.*",
+    "serve-favicon": "*",
     "request": "*",
     "ejs": "*"
   },

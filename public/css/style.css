@@ -2,6 +2,7 @@ body {
   color: #222222;
   margin: 0;
   padding: 0;
+  font-family: arial,sans-serif;
 }
 
 #search {
@@ -93,16 +94,25 @@ body {
 
 #content .content-item h3 {
   display: block;
-  font-size: medium;
+  font-size: 18px;
   margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: #1A0DAB;
+  font-weight: normal;
+}
+
+#content .content-item b {
+  color: #DD4B39;
+  font-style: normal;
+  font-weight: normal;
 }
 
 #content .content-item .content-item-link {
   color: #006621;
   font-style: normal;
+  line-height: 1em;
 }
 
 #content .content-item-desc {

@@ -14,6 +14,7 @@
     <input type="text" id="s-input">
     <div id="s-btn"><span></span></div>
   </div>
+
   
   <div id="content">
     <div id="result-info">About <%- cursor.estimatedResultCount %> results (<%- cursor.searchResultTime %> seconds) </div>
@@ -30,29 +31,70 @@
     
     <div id="nav">
       <ul>
-        <li class="nav-prev">
-          <a href="">
-            <div class="nav-item-img"></div>
-            <div>上一页</div>
-          </a>
-        </li>
+        <% if (cursor.currentPageIndex > 0) { %>
+          <li class="nav-prev">
+            <a href="/search?q=<%- q %>&start=<%- (cursor.currentPageIndex - 1) * 10 %>">
+              <div class="nav-item-img"></div>
+              <div>上一页</div>
+            </a>
+          </li>
+        <% } %>
+        
         <% for (var i = 0, l = cursor.pages.length; i < l; i++) { %>
-          <li>
-            <a href="<%- cursor.pages[i].label %>">
+          <% if (i == cursor.currentPageIndex) { %>
+            <li class="active">
+          <% } else { %>
+            <li>
+          <% } %>
+            <a href="/search?q=<%- q %>&start=<%- cursor.pages[i].start %>">
               <div class="nav-item-img"></div>
               <div><%- cursor.pages[i].label %></div>
             </a>
           </li>
         <% } %>
-        <li class="nav-next">
-          <a href="">
-            <div class="nav-item-img"></div>
-            <div>上一页</div>
-          </a>
-        </li>
+
+        <% if (cursor.currentPageIndex < 9) { %>
+          <li class="nav-next">
+            <a href="/search?q=<%- q %>&start=<%- (cursor.currentPageIndex + 1) * 10 %>">
+              <div class="nav-item-img"></div>
+              <div>下一页</div>
+            </a>
+          </li>
+        <% } %>  
       </ul>
     </div>
   </div>
   
+
+  <script>
+    var sInput = document.getElementById("s-input");
+    var sBtn = document.getElementById("s-btn");
+    sInput.onkeypress = function(ev) {
+      if (13 == ev.keyCode) {
+        sBtn.click();
+        return false;
+      }
+
+    };
+    sBtn.onclick = function() {
+      console.log(sInput.value);
+      window.location.href = '/search?q=' + sInput.value;
+    };
+
+    window.onload = function() {
+      var para = location.search.substr(1);
+      if (para.length > 0) {
+        var arr = para.split(/[&=]/);
+        for (var i = 0; i < arr.length; i += 2) {
+          if ('q' == arr[i]) {
+            sInput.value = decodeURIComponent(arr[i+1]);
+            document.title = sInput.value + ' | Google';
+          }
+        }
+      }
+
+    }
+  </script>
+
 </body>
 </html>
