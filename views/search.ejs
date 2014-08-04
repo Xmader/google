@@ -77,7 +77,6 @@
 
     };
     sBtn.onclick = function() {
-      console.log(sInput.value);
       window.location.href = '/search?q=' + sInput.value;
     };
 
@@ -89,10 +88,10 @@
           if ('q' == arr[i]) {
             sInput.value = decodeURIComponent(arr[i+1]);
             document.title = sInput.value + ' | Google';
+            break;
           }
         }
       }
-
     }
   </script>
 

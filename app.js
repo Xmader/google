@@ -7,12 +7,9 @@ var fs = require('fs');
 var KEY = 'AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY';
 var CX = '010939073182372963055:k8pff1pzvy8';
 var REQ_URL = 'https://www.googleapis.com/customsearch/v1element?' +
-                'key=' + KEY +
-                '&cx=' + CX +
-                '&num=10' + 
-                '&hl=zh_CN' + 
-                '&prettyPrint=false' +
-                '&q=';
+                'prettyPrint=false' +
+                '&key=' + KEY +
+                '&cx=' + CX;
 
 google.set('view engine', 'ejs');
 google.set('views', __dirname + '/views');
@@ -23,8 +20,11 @@ google.use(express.static(__dirname + '/public/'));
 google.get('/search', function(req, res, next) {
   var url;
   if (req.query.q) {
-    url = REQ_URL + req.query.q;
-    if (req.query.start) url = url + '&start=' + req.query.start;
+    url = REQ_URL;
+    
+    for (var i in req.query) {
+      url = url + '&' + i + '=' + req.query[i];
+    }
     
     request(url, function (err, response, body) {
       var para;
@@ -48,7 +48,7 @@ google.get('/search', function(req, res, next) {
   }
 });
 
-google.get('/', function(req, res) {
+google.get(/^\/(index.html)?/, function(req, res) {
   res.render('index');
 });
 

@@ -27,22 +27,8 @@
 
     };
     sBtn.onclick = function() {
-      console.log(sInput.value);
       window.location.href = '/search?q=' + sInput.value;
     };
-
-    window.onload = function() {
-      var para = location.search.substr(1);
-      if (para.length > 0) {
-        var arr = para.split(/[&=]/);
-        for (var i = 0; i < arr.length; i += 2) {
-          if ('q' == arr[i]) {
-            sInput.value = decodeURIComponent(arr[i+1]);
-            document.title = sInput.value + ' | Google';
-          }
-        }
-      }
-    }
   </script>
 
 </body>
