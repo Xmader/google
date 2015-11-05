@@ -4,8 +4,9 @@ var favicon = require('serve-favicon');
 var request = require('request');
 var fs = require('fs');
 
-var KEY = 'AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY';
-var CX = '010939073182372963055:k8pff1pzvy8';
+// Get your KEY & CX from https://cse.google.com/cse
+var KEY = 'your key';
+var CX = 'your cx';
 var REQ_URL = 'https://www.googleapis.com/customsearch/v1element?' +
                 'prettyPrint=false' +
                 '&key=' + KEY +
